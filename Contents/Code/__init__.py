@@ -9,19 +9,21 @@ import requests
 
 
 def Start():
-    login_url = '/login'
-    session = requests.session()
-    login_data = {
-        'email': Prefs['email'],
-        'password': Prefs['password']
-    }
-    r = session.post(BASE_URL + login_url, data=login_data)
-	Log(r.headers)
-	Log(r.reason)
-	r = session.get(BASE_URL + "/shows/all")
-	Log(r.headers)
-	Log(r.reason)
+    Login(Prefs['email'], Prefs['password'])
 
+def Login(email, password):
+    loginUrl = '/login'
+    loginData = {
+        'email': email,
+        'password': password
+    }
+    session = requests.session()
+    r = session.post(BASE_URL + loginUrl, data = loginData)
+    Log(r.headers)
+    Log(r.reason)
+    r = session.get(BASE_URL + "/shows/all")
+    Log(r.headers)
+    Log(r.reason)
 
 # There are  few commands you may see appear in this section that are no longer needed.  Below is an explanation of them
 # provided from a very helpful channel designer who was nice enough to explain their purpose to me:
@@ -53,15 +55,15 @@ def Start():
 
 # Important Note: (R stands for Resources folder) to tell the channel where these images are located.
 
-    ObjectContainer.title1 = TITLE
-    ObjectContainer.art = R(ART)
+    # ObjectContainer.title1 = TITLE
+    # ObjectContainer.art = R(ART)
 
-    DirectoryObject.thumb = R(ICON)
-    DirectoryObject.art = R(ART)
-    EpisodeObject.thumb = R(ICON)
-    EpisodeObject.art = R(ART)
-    VideoClipObject.thumb = R(ICON)
-    VideoClipObject.art = R(ART)
+    # DirectoryObject.thumb = R(ICON)
+    # DirectoryObject.art = R(ART)
+    # EpisodeObject.thumb = R(ICON)
+    # EpisodeObject.art = R(ART)
+    # VideoClipObject.thumb = R(ICON)
+    # VideoClipObject.art = R(ART)
 
 ###################################################################################################
 # This tells Plex how to list you in the available channels and what type of channels this is
